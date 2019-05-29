@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tinder</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+
+<style>
+body {
+	padding: 50px;
+	margin: 0;
+	text-align:center;
+}
+h1   {
+	font-size: 100px;
+}
+#x{
+	color:black;
+}
+#heart{
+	color:red;
+}
+i{
+    padding: 10px;
+}
+img{
+	width: 100%;
+    max-width: 500px;
+	max-height: 350px;
+}
+@media only screen and (min-width: 700px) {
+  img {
+    width: 100%;
+  }
+}
+
+</style>
+
+<body>
+
+<div id="contenido" class="container" ></div>
+
+<div class="container " style="font-size: 0.5rem;">
+	<button id="x" class="btn" onclick="traer()"><i class="fa fa-times fa-3x"></i></button>
+	<button id="heart"class="btn" onclick="traer()"><i class="fa fa-heart fa-3x" ></i></button>
+</div>
+
+<script type="text/javascript">
+	var contenido = document.querySelector('#contenido');
+
+var url="https://randomuser.me/api/";
+function traer(){
+	fetch(url)
+         .then(res => res.json())
+         .then(datos => {
+              console.log(datos.results[0]);
+              contenido.innerHTML= ` `; 
+              contenido.innerHTML = `
+              
+                <img src="${datos.results[0].picture.large}" class="mx-auto d-block">
+					<h1 class="text-center">${datos.results[0].name.first}</h1>
+				
+                ` ;
+         })//end function mostrar    
+          }
+
+
+
+
+traer();
+</script>
+</body>
+</html>
